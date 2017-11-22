@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import pl.klakier.gson.R;
 import pl.klakier.gson.fragments.FragmentCarList;
+import pl.klakier.gson.fragments.FragmentCarRecyclerView;
 import pl.klakier.gson.fragments.FragmentTestList;
 
 /**
@@ -16,6 +17,7 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
     FragmentCarList fragmentCarList;
     FragmentTestList fragmentTestList;
+    FragmentCarRecyclerView fragmentCarRecyclerView;
     FragmentManager fragmentManager;
 
 
@@ -29,6 +31,9 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
         if ((fragmentTestList = (FragmentTestList) findFragmentByPosition(1))== null)
             fragmentTestList = new FragmentTestList();
+
+        if ((fragmentCarRecyclerView = (FragmentCarRecyclerView) findFragmentByPosition(2))== null)
+            fragmentCarRecyclerView = new FragmentCarRecyclerView();
     }
 
     @Override
@@ -38,6 +43,8 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
                 return fragmentCarList;
             case 1:
                 return fragmentTestList;
+            case 2:
+                return fragmentCarRecyclerView;
             default:
                 return null;
         }
@@ -45,7 +52,7 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 2;
+        return 3;
     }
 
     public Fragment findFragmentByPosition(int position) {
@@ -59,6 +66,8 @@ public class CustomFragmentPagerAdapter extends FragmentPagerAdapter {
                 return "Car List";
             case 1:
                 return "Test List";
+            case 2:
+                return "Car RV List";
             default:
                 return null;
         }

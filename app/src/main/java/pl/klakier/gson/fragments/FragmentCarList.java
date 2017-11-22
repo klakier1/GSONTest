@@ -19,9 +19,9 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import cz.msebera.android.httpclient.Header;
-import pl.klakier.gson.adapters.CustomCarListAdapter;
 import pl.klakier.gson.R;
 import pl.klakier.gson.ResponseCarJSON;
+import pl.klakier.gson.adapters.CustomCarListAdapter;
 
 
 /**
@@ -153,7 +153,7 @@ public class FragmentCarList extends Fragment {
             ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
             NetworkInfo netInfo = cm.getActiveNetworkInfo();
             return netInfo != null && netInfo.isConnectedOrConnecting();
-        } catch(Exception e) {
+        } catch (Exception e) {
             return false;
         }
     }
@@ -171,6 +171,7 @@ public class FragmentCarList extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+
         void onClickItemClick(View v);
     }
 }

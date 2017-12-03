@@ -21,7 +21,7 @@ import com.loopj.android.http.AsyncHttpResponseHandler;
 import cz.msebera.android.httpclient.Header;
 import pl.klakier.gson.R;
 import pl.klakier.gson.ResponseCarJSON;
-import pl.klakier.gson.adapters.CustomCarListAdapter;
+import pl.klakier.gson.adapters.CustomListViewCarsAdapter;
 
 
 /**
@@ -44,7 +44,7 @@ public class FragmentCarList extends Fragment {
 
     private ListView listView;
     private ResponseCarJSON response;
-    private CustomCarListAdapter adapter;
+    private CustomListViewCarsAdapter adapter;
     private String url = "http://klakier.000webhostapp.com/car.json";
     private Gson gson;
     private AsyncHttpClient client;
@@ -88,13 +88,16 @@ public class FragmentCarList extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_fragment_car_list, container, false);
         listView = view.findViewById(R.id.carList);
+        L.t(getContext(),"onCreateView in FragmentCarList");
         return view;
     }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        makeList();
+        if (adapter != null)
+            makeList();
+        L.t(getContext(),"onActivityCreated in FragmentCarList");
     }
 
     @Override
@@ -127,7 +130,7 @@ public class FragmentCarList extends Fragment {
                     String responseHttp = new String(responseBody);
                     gson = new Gson();
                     response = gson.fromJson(responseHttp, ResponseCarJSON.class);
-                    adapter = new CustomCarListAdapter(getActivity(), response.getItems());
+                    adapter = new CustomListViewCarsAdapter(getActivity(), response.getItems());
                     listView.setAdapter(adapter);
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override

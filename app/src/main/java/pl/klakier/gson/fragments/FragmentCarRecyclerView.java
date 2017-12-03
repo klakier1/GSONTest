@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import pl.klakier.gson.R;
 import pl.klakier.gson.ResponseCarJSON;
 import pl.klakier.gson.TestJson;
-import pl.klakier.gson.adapters.CustomCarRecycleViewAdapter;
+import pl.klakier.gson.adapters.CustomRecycleViewCarsAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -33,7 +33,7 @@ public class FragmentCarRecyclerView extends Fragment {
     private String mParam2;
 
     private RecyclerView recyclerView;
-    private CustomCarRecycleViewAdapter customCarRecycleViewAdapter;
+    private CustomRecycleViewCarsAdapter customRecycleViewCarsAdapter;
     private Gson gson;
     private ResponseCarJSON response;
 
@@ -72,7 +72,7 @@ public class FragmentCarRecyclerView extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        L.t(getContext(),"onCreateView in FragmentCarRecyclerView");
         View view = inflater.inflate(R.layout.fragment_fragment_car_recycler_view, container, false);
         recyclerView = view.findViewById(R.id.rcv_car_list);
         return view;
@@ -83,8 +83,9 @@ public class FragmentCarRecyclerView extends Fragment {
         super.onActivityCreated(savedInstanceState);
         gson = new Gson();
         response = gson.fromJson(TestJson.mJSONcars, ResponseCarJSON.class);
-        customCarRecycleViewAdapter = new CustomCarRecycleViewAdapter(getActivity(), response.getItems());
-        recyclerView.setAdapter(customCarRecycleViewAdapter);
+        customRecycleViewCarsAdapter = new CustomRecycleViewCarsAdapter(getActivity(), response.getItems());
+        recyclerView.setAdapter(customRecycleViewCarsAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        L.t(getContext(),"onActivityCreated in FragmentCarRecyclerView");
     }
 }

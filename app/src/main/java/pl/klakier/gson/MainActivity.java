@@ -54,17 +54,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+//set toolbar
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //create custom fragment adapter
         fragmentManager = getSupportFragmentManager();
         customFragmentPagerAdapter = new CustomFragmentPagerAdapter(fragmentManager);
+
         viewPager = findViewById(R.id.viewPager);
         viewPager.setAdapter(customFragmentPagerAdapter);
 
         tabLayout = findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
         tabLayout.getTabAt(0).setIcon(R.drawable.ic_car);
 
         fragmentCarList = (FragmentCarList) customFragmentPagerAdapter.getItem(0);

@@ -18,7 +18,7 @@ import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
 import cz.msebera.android.httpclient.Header;
-import pl.klakier.gson.adapters.CustomTestListAdapter;
+import pl.klakier.gson.adapters.CustomListViewTestAdapter;
 import pl.klakier.gson.R;
 import pl.klakier.gson.ResponseTestJSON;
 
@@ -42,7 +42,7 @@ public class FragmentTestList extends Fragment {
 
     private ListView listView;
     private ResponseTestJSON responseTestJSON;
-    private CustomTestListAdapter adapter;
+    private CustomListViewTestAdapter adapter;
     private String url = "http://klakier.000webhostapp.com/test.json";
     private Gson gson;
     private AsyncHttpClient client;
@@ -125,7 +125,7 @@ public class FragmentTestList extends Fragment {
                     String responseHttp = new String(responseBody);
                     gson = new Gson();
                     responseTestJSON = gson.fromJson(responseHttp, ResponseTestJSON.class);
-                    adapter = new CustomTestListAdapter(getActivity(), responseTestJSON.getMenu().getItems());
+                    adapter = new CustomListViewTestAdapter(getActivity(), responseTestJSON.getMenu().getItems());
                     listView.setAdapter(adapter);
                     Toast.makeText(getActivity(), "test adapter set", Toast.LENGTH_SHORT).show();
                 }
